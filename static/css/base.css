@@ -95,3 +95,25 @@ body {
         padding-top: 164px;
     }
 }
+
+/* Pad the top a bit when the navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
+}
+
+/* Pad the top a bit when the navbar is collapsed on small mobile */
+@media (max-width: 364px) {
+    .header-container {
+        padding-top: 240px;
+    }
+
+    body {
+        height: calc(100vh - 240px);
+    }
+}
