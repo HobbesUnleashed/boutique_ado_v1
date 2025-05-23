@@ -53,7 +53,7 @@
             </div>
             <!-- Search box that allows us to search the site for any product -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <form method="GET" action="">
+                <form method="GET" action="{% url 'products' %}">
                     <!-- Will send a query and GET a response. Action to be filled in later when the page it links to has been built -->
                     <div class="input-group w-100"> <!-- Search box will take 100% width of container -->
                         <input type="text" name="q" placeholder="Search our site"
