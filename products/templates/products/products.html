@@ -138,4 +138,44 @@
         </div>
     </div>
 </div>
+<!-- Button for jumping back to the top of the page -->
+<div class="btt-button shadow-sm rounded-0 border border-black">
+    <a class="btt-link d-flex h-100">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>
+</div>
+{% endblock %}
+
+<!-- Apply JS to the postloadjs block built into the base.html file earlier -->
+{% block postloadjs %}
+    <!-- {{ block.super }} will append any additional code to anything that might be appearing in the base.html as a standard for all pages -->
+    {{ block.super }}
+    <script type="text/javascript">
+        $('.btt-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+    </script>
+
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this); /* Use the selected option (sort-selector) and assign to variable */
+            var currentUrl = new URL(window.location); /* Get the current window location and assign to variable */
+
+            var selectedVal = selector.val(); /* Get the value from the selector box (above) and apply to new variable */
+            if(selectedVal != "reset"){ /* If this is not reset */
+                var sort = selectedVal.split("_")[0]; /* Split the value into two parts - starting with the sort type */
+                var direction = selectedVal.split("_")[1]; /* Split the second part into the direction variable */
+
+                currentUrl.searchParams.set("sort", sort); /* Take the new values and set them in the currentUrl using "set" to override the GET function used previously */
+                currentUrl.searchParams.set("direction", direction); /* Do the same with the direction */
+
+                window.location.replace(currentUrl); /* Update the window location with the newly updated currentUrl */
+            } else {
+                currentUrl.searchParams.delete("sort"); /* If the option of reset was used, delete the sort paramater */
+                currentUrl.searchParams.delete("direction"); /* Do the same for the direction - essentially making these 'None' again */
+
+                window.location.replace(currentUrl); /* Update the window location with the newly deleted sort & direction */
+            }
+        })
+    </script>
 {% endblock %}
